@@ -12,3 +12,5 @@
 ![image](https://user-images.githubusercontent.com/8045533/132653962-be31b6db-0763-45af-85b2-e4499e5a59bc.png)
 
 * Max-Forwards: 5 通过 TRACE 方法或 OPTIONS 方法，发送含有首部字段 Max-Forwards 的请求时，该字段以十进制整数形式指定可经过的服务器最大数目。[可参考](https://www.bookstack.cn/read/http-study/27.md)
+* Via 指明经过的代理服务器名称及版本  当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面添加 Via 头部，并填上自己的相关信息，当下一个代理服务器 收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via 头部，并把自己的相关信息加到后面， 以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236-81.D07071953.sina.com.cn:80 (squid/2.6.STABLE13)[可参考](https://www.bookstack.cn/read/http-study/11.md)
+* Cache-Control：no-transform 代表禁止代理服务器修改响应包体
