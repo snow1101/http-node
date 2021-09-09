@@ -14,3 +14,19 @@
 * Max-Forwards: 5 通过 TRACE 方法或 OPTIONS 方法，发送含有首部字段 Max-Forwards 的请求时，该字段以十进制整数形式指定可经过的服务器最大数目。[可参考](https://www.bookstack.cn/read/http-study/27.md)
 * Via 指明经过的代理服务器名称及版本  当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面添加 Via 头部，并填上自己的相关信息，当下一个代理服务器 收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via 头部，并把自己的相关信息加到后面， 以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236-81.D07071953.sina.com.cn:80 (squid/2.6.STABLE13)[可参考](https://www.bookstack.cn/read/http-study/11.md)
 * Cache-Control：no-transform 代表禁止代理服务器修改响应包体
+
+### 描述请求上下文的头部
+
+* user-agent：**请求头**中指明客户端的类型信息，服务器可以根据此对资源的表述做抉择 例如user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36  
+* referer：referer是浏览器对来自某一页面的请求自动添加的头部，**请求头**中告诉了这个请求的来源， 对防盗链和防止恶意请求 有一定的作用。比如我只允许我自己的网站访问我自己的图片服务器，那我的域名是www.xxx.com，那么图片服务器每次取到Referer来判断一下是不是我自己的域名www.xxxx.com，如果是就继续访问，不是就拦截。　 Refere不可靠，但有部分作用，起码增加了爬图难度和成本，因为在浏览器端你是无法指定(伪造)，你只能通过定义meta元素告诉浏览器怎么用 <meta name="referrer" content="never"> 
+ content有如下值：
+
+1. 如果 referer-policy 的值为 never：删除 http head 中的 referer；
+2. 如果 referer-policy 的值为 default：如果当前页面使用的是 https 协议，而正要加载资源使用的是普通的 http 协议，则将 http header 中额 referer 置为空；
+3. 如果 referer-policy 的值 origin：只发送 origin 部分；
+4. 如果 referer-policy 的值为 always：不改变 http header 中的 referer 的值；
+
+* from: **请求头**主要用于网络爬虫，告诉服务器如何通过邮件联系到爬虫的负责人。 因为邮件地址涉及到隐私信息，所以请求携带From头需要征得用户的同意。RFC协议建议所有的机器人代理发起的请求应该携带此头部，以免遇到问题时可以找到责任人。
+* server: **响应头**中指明服务器上所用软件的信息，用于帮助客户端定位问题或者统计数据 例如：Server : Apache/2.2.17 (Unix)
+* allow: **响应头**中告诉客户端，服务器上该URL对应的资源允许哪些方法的执行 例如 allow: GET
+* accept-ranges: **响应头**中告诉客户端，服务器上该资源是否允许range请求 。当浏览器发现 Accept-Ranges 头时，可以尝试继续中断了的下载，而不是重新开始。 Accept-Ranges: bytes Accept-Ranges: none
