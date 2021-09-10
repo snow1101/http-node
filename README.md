@@ -33,7 +33,47 @@
 
 ### http包体相关的头部
 
-* content-length: 1*digit 发送http消息时，已经可以确定包体的全部长度，此时返回content-length 并用十进制表明包体中的**字节**个数，且必须与实际传输的包体长度一致，如果表述的长度 小于 实际的包体长度， 包体会被截断。 如果大于包体的实际长度，会导致请求失败！
+* content-length: 1*digit **发送http消息时，已经可以确定包体的全部长度**，此时返回content-length 并用十进制表明包体中的**字节**个数，且必须与实际传输的包体长度一致，如果表述的长度 小于 实际的包体长度， 包体会被截断。 如果大于包体的实际长度，会导致请求失败！
+* transfer-encoding: chunk **发送http消息时，不能够确定包体的全部长度** ， 含有transfer-encoding头部后content-length 头部会被忽略。 由于 Content-Length 字段必须真实反映实体长度，但是对于动态生成的内容来说，在内容创建完之前，长度是不可知的。这时候要想准确获取长度，只能开一个足够大的 buffer，等内容全部生成好再计算。但这样做一方面需要更大的内存开销，另一方面也会让客户端等更久。我们需要一个新的机制：不依赖头部的长度信息，也能知道实体的边界——分块编码（Transfer-Encoding: chunked）
+具体方法
+  1. 在头部加入 Transfer-Encoding: chunked 之后，就代表这个报文采用了分块编码。这时，报文中的实体需要改为用一系列分块来传输。
+  2. 每个分块包含十六进制的长度值和数据，长度值独占一行，长度不包括它结尾的 CRLF(\r\n)，也不包括分块数据结尾的 CRLF。
+  3. 最后一个分块长度值必须为 0，对应的分块数据没有内容，表示实体结束。
+例如
+```
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Transfer-Encoding: chunked
+
+   
+
+25\r\n
+This is the data in the first chunk\r\n
+
+   
+
+1C\r\n
+and this is the second one\r\n
+
+   
+
+3\r\n
+
+con\r\n
+
+   
+
+8\r\n
+sequence\r\n
+
+   
+
+0\r\n
+
+\r\n
+```
+**Content-Encoding 和 Transfer-Encoding 二者经常会结合来用，其实就是针对 Transfer-Encoding 的分块再进行 Content-Encoding压缩。**
+
 
 ## 状态码
 
