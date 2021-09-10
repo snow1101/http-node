@@ -31,6 +31,9 @@
 * allow: **响应头**中告诉客户端，服务器上该URL对应的资源允许哪些方法的执行 例如 allow: GET
 * accept-ranges: **响应头**中告诉客户端，服务器上该资源是否允许range请求 。当浏览器发现 Accept-Ranges 头时，可以尝试继续中断了的下载，而不是重新开始。 Accept-Ranges: bytes Accept-Ranges: none
 
+### http包体相关的头部
+
+* content-length: 1*digit 发送http消息时，已经可以确定包体的全部长度，此时返回content-length 并用十进制表明包体中的**字节**个数，且必须与实际传输的包体长度一致，如果表述的长度 小于 实际的包体长度， 包体会被截断。 如果大于包体的实际长度，会导致请求失败！
 
 ## 状态码
 
