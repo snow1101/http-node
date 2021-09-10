@@ -30,3 +30,8 @@
 * server: **响应头**中指明服务器上所用软件的信息，用于帮助客户端定位问题或者统计数据 例如：Server : Apache/2.2.17 (Unix)
 * allow: **响应头**中告诉客户端，服务器上该URL对应的资源允许哪些方法的执行 例如 allow: GET
 * accept-ranges: **响应头**中告诉客户端，服务器上该资源是否允许range请求 。当浏览器发现 Accept-Ranges 头时，可以尝试继续中断了的下载，而不是重新开始。 Accept-Ranges: bytes Accept-Ranges: none
+
+
+## 状态码
+
+* 300 multiple choices  当请求头部带有响应式协商的内容， 服务器会返回300 multiple choices 由客户端户端选择一种标书URI使用  或者406 Not Acceptable，
