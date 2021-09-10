@@ -34,4 +34,6 @@
 
 ## 状态码
 
-* 300 multiple choices  当请求头部带有响应式协商的内容， 服务器会返回300 multiple choices 由客户端户端选择一种标书URI使用  或者406 Not Acceptable，
+* 300 multiple choices  当请求头部带有响应式协商的内容， 服务器会返回300 multiple choices 由客户端户端选择一种标书URI使用  或者406 Not Acceptable
+![image](https://user-images.githubusercontent.com/8045533/132810836-945fb7e6-e866-46de-ae4d-ceb0e3bf00b9.png)
+
