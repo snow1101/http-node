@@ -74,7 +74,7 @@ sequence\r\n
 ```
 **Content-Encoding 和 Transfer-Encoding 二者经常会结合来用，其实就是针对 Transfer-Encoding 的分块再进行 Content-Encoding压缩。**
 * Content-Type: 实体头部用于指示资源的MIME类型 主类型有 text/image/audio/video/application 等，细分下去可参考[Content-Type对照表](https://tool.oschina.net/commons/)
-
+* Content-Disposition: inline |attachment ｜form-data  Content-Disposition作为响应头指示回复的内容该以何种形式展示，是以内联的形式（即网页或者页面的一部分），还是以附件的形式下载并保存到本地。具体参考[Content-Disposition细分](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition)。这个值中我们需要注意的是 若值为attachment， 则响应直接作为附件下载，比如百度图片，点击下载图标，会发现请求的响应头为Content-Disposition: attachment; filename="3f0c8bea924f46e03545254cbbf6d433.jpeg"  filename的值就是附件的名字
 ## 状态码
 
 * 300 multiple choices  当请求头部带有响应式协商的内容， 服务器会返回300 multiple choices 由客户端户端选择一种标书URI使用  或者406 Not Acceptable
