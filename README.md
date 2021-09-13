@@ -73,7 +73,17 @@ sequence\r\n
 \r\n
 ```
 **Content-Encoding 和 Transfer-Encoding 二者经常会结合来用，其实就是针对 Transfer-Encoding 的分块再进行 Content-Encoding压缩。**
-* Content-Type: 实体头部用于指示资源的MIME类型 主类型有 text/image/audio/video/application 等，细分下去可参考[Content-Type对照表](https://tool.oschina.net/commons/)
+* Content-Type: 实体头部用于指示资源的MIME类型 主类型有 text/image/audio/video/application 等，细分下去可参考[Content-Type对照表](https://tool.oschina.net/commons/)，特别需要注意的一个是在表单提交，并且有一些上传文件的操作时，请求头中Content-Type大多数为multipart/form-data ，这个时候请求头中会有一些Content-Disposition 相关的信息用于表述表单的字段，但是一般在network下看不到，可以通过抓包看具体的响应头部 例如
+  ```
+  Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+  ----WebKitFormBoundary7MA4YWxkTrZu0gW
+  Content-Disposition: form-data; name="topic"
+
+  xx
+  ----WebKitFormBoundary7MA4YWxkTrZu0gW
+  Content-Disposition: form-data; name="logLine"
+  ```
 * Content-Disposition: inline |attachment ｜form-data  Content-Disposition作为响应头指示回复的内容该以何种形式展示，是以内联的形式（即网页或者页面的一部分），还是以附件的形式下载并保存到本地。具体参考[Content-Disposition细分](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition)。这个值中我们需要注意的是 若值为attachment， 则响应直接作为附件下载，比如百度图片，点击下载图标，会发现请求的响应头为Content-Disposition: attachment; filename="3f0c8bea924f46e03545254cbbf6d433.jpeg"  filename的值就是附件的名字
 ## 状态码
 
