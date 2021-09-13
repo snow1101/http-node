@@ -73,7 +73,7 @@ sequence\r\n
 \r\n
 ```
 **Content-Encoding 和 Transfer-Encoding 二者经常会结合来用，其实就是针对 Transfer-Encoding 的分块再进行 Content-Encoding压缩。**
-
+* Content-Type: 实体头部用于指示资源的MIME类型 主类型有 text/image/audio/video/application 等，细分下去可参考[Content-Type对照表](https://tool.oschina.net/commons/)
 
 ## 状态码
 
