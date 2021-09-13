@@ -92,6 +92,6 @@ sequence\r\n
 * **412** Precondition Failed 客户端错误响应代码指示对目标资源的访问已被拒绝。这种情况与上比其他方法条件请求GET或者HEAD当被定义的条件If-Unmodified-Since或If-None-Match头部不被满足。在这种情况下，无法进行请求（通常是上载或修改资源），并且发送此错误响应。
   ![image](https://user-images.githubusercontent.com/8045533/133038914-e291ec9a-dc90-4325-bd8b-521f600fbf39.png)
 * **206** Partial Content表示该服务器已经成功处理了部分 GET 请求。类似于 FlashGet 或者迅雷这类的 HTTP下载工具都是使用此类响应实现断点续传或者将一个大文档分解为多个下载段同时下载。该请求必须包含 Range 头信息来指示客户端希望得到的内容范围，并且可能包含 If-Range 来作为请求条件。请求头和响应头可以随便打开百度视频，快进到一个点查看请求和响应报文
-    ![image](https://user-images.githubusercontent.com/8045533/133041174-29639547-c39e-4ab0-92ab-2af1eaeffe8c.png)
-
-    ![image](https://user-images.githubusercontent.com/8045533/133041233-796f88a5-a3a7-4e8d-b232-1f33d7edac3a.png)
+![image](https://user-images.githubusercontent.com/8045533/133041908-46624044-b695-4ef0-9d61-712e40ee0174.png)
+![image](https://user-images.githubusercontent.com/8045533/133042050-d0f3a67e-369b-4255-8c25-51192cb7f1d5.png)
+![image](https://user-images.githubusercontent.com/8045533/133042176-4990f0ef-dae6-4360-a33f-0a404b7e62b8.png)
