@@ -85,8 +85,10 @@ sequence\r\n
   Content-Disposition: form-data; name="logLine"
   ```
 * Content-Disposition: inline |attachment ｜form-data  Content-Disposition作为响应头指示回复的内容该以何种形式展示，是以内联的形式（即网页或者页面的一部分），还是以附件的形式下载并保存到本地。具体参考[Content-Disposition细分](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition)。这个值中我们需要注意的是 若值为attachment， 则响应直接作为附件下载，比如百度图片，点击下载图标，会发现请求的响应头为Content-Disposition: attachment; filename="3f0c8bea924f46e03545254cbbf6d433.jpeg"  filename的值就是附件的名字
-## 状态码
+## 状态码 可参考[http状态码大全](https://www.php.cn/web/web-http.html)
 
-* 300 multiple choices  当请求头部带有响应式协商的内容， 服务器会返回300 multiple choices 由客户端户端选择一种标书URI使用  或者406 Not Acceptable
+* **300** multiple choices  当请求头部带有响应式协商的内容， 服务器会返回300 multiple choices 由客户端户端选择一种标书URI使用  或者406 Not Acceptable
 ![image](https://user-images.githubusercontent.com/8045533/132810836-945fb7e6-e866-46de-ae4d-ceb0e3bf00b9.png)
+* **412** Precondition Failed 客户端错误响应代码指示对目标资源的访问已被拒绝。这种情况与上比其他方法条件请求GET或者HEAD当被定义的条件If-Unmodified-Since或If-None-Match头部不被满足。在这种情况下，无法进行请求（通常是上载或修改资源），并且发送此错误响应。
+  ![image](https://user-images.githubusercontent.com/8045533/133038914-e291ec9a-dc90-4325-bd8b-521f600fbf39.png)
 
