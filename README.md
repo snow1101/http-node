@@ -15,6 +15,16 @@
 * Via 指明经过的代理服务器名称及版本  当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面添加 Via 头部，并填上自己的相关信息，当下一个代理服务器 收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via 头部，并把自己的相关信息加到后面， 以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236-81.D07071953.sina.com.cn:80 (squid/2.6.STABLE13)[可参考](https://www.bookstack.cn/read/http-study/11.md)
 * Cache-Control：no-transform 代表禁止代理服务器修改响应包体
 
+### 验证器响应头部  
+* Etag: 给出当前资源表述的标签 分为强验证和弱验证 ， 举个例子 强验证 Etag: "xyzzy" 弱验证  Etag: W/"xyzzy"  加上W/ 就代表弱验证器
+* Last-Modified: date
+
+### 条件请求头部
+* if-match : etag
+* if-none-match: etag
+* if-modified-since: date
+* if-unmodified-since: date
+* if-range: etag/date
 ### 描述请求上下文的头部
 
 * user-agent：**请求头**中指明客户端的类型信息，服务器可以根据此对资源的表述做抉择 例如user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36  
