@@ -25,6 +25,11 @@
 * if-modified-since: date
 * if-unmodified-since: date
 * if-range: etag/date
+
+### 缓存相关
+1. 判断缓存是否过期 —— 按优先级，取以下响应头部的值  **s-maxage > max-age > Expires >  预估过期时间**
+   例如： Cache-Control: s-maxage=3600    Cache-Control: max-age=86400   Expires: Fri,03 May 2020 03:15:20 GMT 
+   **预估过期时间** 是指现在网络上很多资源是没有返回缓存相关的一些头部的，但是一些资源比如图片又不是经常会变得，所以大多数浏览器根据 RFC7234推荐的算法 （DownloadTime-LastModified）* 10% 作为预估的过期时间
 ### 描述请求上下文的头部
 
 * user-agent：**请求头**中指明客户端的类型信息，服务器可以根据此对资源的表述做抉择 例如user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36  
